@@ -1,0 +1,12 @@
+-- 코드를 입력하세요
+WITH host_cnt as (
+    SELECT HOST_ID, COUNT(*)
+    FROM PLACES
+    GROUP BY 1
+    HAVING COUNT(*) >= 2
+)
+
+SELECT *
+FROM PLACES
+WHERE HOST_ID IN (SELECT HOST_ID FROM host_cnt)
+ORDER BY 1;
